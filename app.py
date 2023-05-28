@@ -34,10 +34,10 @@ def main():
 
     # Lecctura de datos
     #Datos = st.text_input("Ingrese los valores : N P K Temp Hum pH lluvia:")
-    N = st.text_input("min_temp:")
-    P = st.text_input("humidity_9am:")
-    K = st.text_input("temp_9am:")
-    Temp = st.text_input("wind_speed_9am:")
+    N = st.text_input("Temperatura Minima:")
+    P = st.text_input("Humedad 9am:")
+    K = st.text_input("Temperatura 9am:")
+    Temp = st.text_input("Velocidad 9am:")
     
     # El botón predicción se usa para iniciar el procesamiento
     if st.button("Predicción :"): 
