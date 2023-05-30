@@ -23,17 +23,17 @@ def main():
     # Se carga el modelo
     if model=='':
         with open(MODEL_PATH, 'rb') as file:
-            model = pickle.load(file)
-    
-    # Título
-    html_temp = """
-    <h1 style="color:#181082;text-align:center;">Predicción T° Máxima en Australia</h1>
-    </div>
-    """
-    st.markdown(html_temp,unsafe_allow_html=True)
+            model = pickle.load(file) 
 
-    # Lecctura de datos
-    #Datos = st.text_input("Ingrese los valores : N P K Temp Hum pH lluvia:")
+    st.set_page_config(
+        page_title="Temperatura máxima",
+        page_icon="🌞",
+    )
+
+    st.title("Predicción T° Máxima en Australia")
+    #st.sidebar.success("Select a page about")
+
+    # Lectura de datos
     N = st.text_input("Temperatura Minima:")
     P = st.text_input("Humedad 9am:")
     K = st.text_input("Temperatura 9am:")
@@ -41,13 +41,16 @@ def main():
     
     # El botón predicción se usa para iniciar el procesamiento
     if st.button("Predicción :"): 
-        #x_in = list(np.float_((Datos.title().split('\t'))))
         x_in =[np.float_(N.title()),
                     np.float_(P.title()),
                     np.float_(K.title()),
                     np.float_(Temp.title())]
         predictS = model_prediction(x_in, model)
-        st.success('La temperatura máxima es: {}'.format(predictS[0]).upper())
+        
+        # Redondear el valor
+        temperatura_maxima = round(predictS[0], 1)
+        
+        st.success(f'La temperatura máxima es: {temperatura_maxima}  °C'.upper())
 
 if __name__ == '__main__':
     main()
