@@ -1,9 +1,10 @@
 import numpy as np
 import pickle
 import streamlit as st
+from PIL import Image
 
 # Path del modelo preentrenado
-MODEL_PATH = 'models/regresion_logistica.pkl'
+MODEL_PATH = 'models/modelo_clima.pkl'
 
 # Se recibe la imagen y el modelo, devuelve la predicción
 def model_prediction(x_in, model):
@@ -22,6 +23,9 @@ def main():
     # Título
     st.title("¿Llueve mañana? ¡Descúbrelo aquí!")
 
+    image = Image.open('datos.jpeg')
+    st.image(image, caption='Sunrise by the mountains')
+    
     # Lecctura de datos
     N = st.text_input("Temperatura Minima:")
     P = st.text_input("Humedad 9 AM:")
@@ -42,6 +46,8 @@ def main():
             st.success('¿Lloverá mañana?: Si')
         elif predictS[0] == 0:
             st.success('¿Lloverá mañana?: No')
+
+
             
 if __name__ == '__main__':
     main()
