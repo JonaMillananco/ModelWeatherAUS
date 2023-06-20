@@ -13,9 +13,11 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_page_config(
     page_title="Mi Aplicación",
     page_icon=":smiley:",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
+
+st.markdown('<style>div.stPlotlist>div.fullscreenFrame>div {max-width: 400px}</style>', unsafe_allow_html=True)
 
 def main():
     st.title("Bienvenido a la predicción del clima en Australia🦘")
@@ -77,8 +79,11 @@ def main():
     # Correlation
     # Seaborn Plot
     if st.checkbox("Diagrama de correlación[Seaborn]"):
-        st.write(sns.heatmap(df.corr(),annot=True))
+        st.success("Generando diagrama de correlación")
+        fig, ax = plt.subplots(figsize=(8, 6))
+        st.write(sns.heatmap(df[['MinTemp','WindSpeed9am','WindSpeed3pm','Humidity9am','Humidity3pm', 'MaxTemp', 'WindSpeed3pm', 'Temp9am']].corr(), annot=True))
         st.pyplot()
+
         
     # Pie Chart
     if st.checkbox("Pie Plot"):
