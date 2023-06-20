@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 
 # Path del modelo preentrenado
-MODEL_PATH = 'models/modelo_clima.pkl'
+MODEL_PATH = 'models/modelo_clima2.pkl'
 
 # Se recibe la imagen y el modelo, devuelve la predicción
 def model_prediction(x_in, model):
@@ -22,9 +22,6 @@ def main():
     )
     # Título
     st.title("¿Llueve mañana? ¡Descúbrelo aquí!")
-
-    image = Image.open('datos.jpeg')
-    st.image(image, caption='Sunrise by the mountains')
     
     # Lecctura de datos
     N = st.text_input("Temperatura Minima:")
